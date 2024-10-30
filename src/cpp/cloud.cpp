@@ -5,6 +5,10 @@ void Cloud::addNetwork(const char* ssid, const char* pass) {
     this->_networks.push_back(Network(ssid, pass));
 }
 
+void Cloud::addNetwork(const char* ssid) {
+    this->_networks.push_back(Network(ssid, nullptr));
+}
+
 // Tries to reconnect to the networks in the vector array, and collects data from the sensors if the network is not present while reconnecting.
 bool Cloud::tryConnection(int index, bool isInit) {
     bool isConnected = false;
@@ -12,7 +16,11 @@ bool Cloud::tryConnection(int index, bool isInit) {
     int tries = 0;
 
     Network network = this->_networks.at(index);
-    WiFi.begin(network._name, network._content);
+
+    if (network._content == nullptr)
+        WiFi.begin(network._name);
+    else
+        WiFi.begin(network._name, network._content);
 
     while(!isConnected && tries <= NETWORK_TRIES) {
         if (millis() - delayMillis > 500) {

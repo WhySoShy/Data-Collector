@@ -56,6 +56,8 @@ class Cloud {
         // With the First in - First out principle.
         void addFiFo();
         void addNetwork(const char* ssid, const char* pass);
+        void addNetwork(const char* ssid);
+        
         void addEndpoint(const Endpoint_Client& payload) { 
             this->_endpoints.push_back(payload); 
         }

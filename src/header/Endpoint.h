@@ -23,6 +23,7 @@ struct Endpoint_Client {
             // If the buffer size is not set, it will use around 20kb of memory alone.
             // Buffer size is calculated like this: (164 * MAX_CONSTRUC_ELEMENTS) where 164 is the size of each json element constructed.
             client.setBufferSizes(3500, 500);
+            
             client.setInsecure();
             if (http.begin(client, this->_host, 443, this->_parameters)) {
                 addHeaders(http);

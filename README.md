@@ -54,6 +54,13 @@ You can add one or more networks for the device to use, if you add multiple netw
 ```cpp
 cloudData.addNetwork("SSID", "PASSWORD");
 ```
+You are able to connect to an open network.
+```cpp
+cloudData.addNetwork("SSID");
+```
+
+*If you are trying to connect to a network that uses a login portal, then there may be an issue with connecting to it.*
+<u>The ESP8266 controller only supports 2.4ghz</u>
 
 ### Start configuration.
 When calling `.begin(Sensor::Propane)` you are making the sensor's ready and trying to connect to a network. If the connection wasn't success then it just tries to re-connect infinitly, when there is a connection it will synchronize the time using *NTP* and reserve memory for the queue of elements. <br />
@@ -174,7 +181,7 @@ There is about 80kb RAM available for use, therefor we should try to allocate as
 *Remember to check if your API can handle a JSON Array.*
 
 ### RAM Available for use.
- > Below i have made a table that displays the memory usage of every 'feature', these are only for guidance.
+ > Below i have made a table that displays the memory usage of every 'feature', these are only for guidance so they may be incorrect.
  
 | Allocation for       | Amount |
 | :------------------- | :----: |
